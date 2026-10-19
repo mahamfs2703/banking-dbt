@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: Current (non-deleted) customers, cleaned and typed.
+    columns:
+      - name: customer_id
+        data_tests: [unique, not_null]
+      - name: kyc_status
+        data_tests:
+          - accepted_values:
+              values: ['PENDING', 'VERIFIED', 'REJECTED']
+
+  - name: stg_accounts
+    description: Current (non-deleted) accounts, cleaned and typed.
+    columns:
+      - name: account_id
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+      - name: account_type
+        data_tests:
+          - accepted_values:
+              values: ['SAVINGS', 'CHECKING', 'CREDIT']
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['ACTIVE', 'FROZEN', 'CLOSED']
+
+  - name: stg_merchants
+    description: Current (non-deleted) merchants, cleaned and typed.
+    columns:
+      - name: merchant_id
+        data_tests: [unique, not_null]
+
+  - name: stg_transactions
+    description: All transactions including soft-deleted ones, flagged with is_deleted.
+    columns:
+      - name: transaction_id
+        data_tests: [unique, not_null]
+      - name: account_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+      - name: merchant_id
+        description: Nullable. Null for non-merchant transactions such as deposits.
+        data_tests:
+          - relationships:
+              to: ref('stg_merchants')
+              field: merchant_id
+      - name: transaction_type
+        data_tests:
+          - accepted_values:
+              values: ['PURCHASE', 'DEPOSIT', 'WITHDRAWAL', 'TRANSFER']
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['PENDING', 'COMPLETED', 'FAILED', 'REVERSED']
