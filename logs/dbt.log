@@ -1636,3 +1636,671 @@ from (
 [0m03:29:03.093672 [debug] [Dummy-1   ]: Resource report: {"command_name": "snapshot", "command_success": true, "command_wall_clock_time": 5.9005084, "process_in_blocks": "0", "process_kernel_time": 0.86, "process_mem_max_rss": "509000", "process_out_blocks": "0", "process_user_time": 4.85}
 [0m03:29:03.094332 [debug] [Dummy-1   ]: Command `cli snapshot` succeeded at 03:29:03.094060 after 5.90 seconds
 [0m03:29:03.094853 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 09:34:03.201987 | f3da94e0-4ba4-4f60-852e-f6b6f2b82337 ==============================
+[0m09:34:03.201987 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m09:34:03.202877 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_kj6ia_l8', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/tmp/dbt/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt ', 'log_format': 'default', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m09:34:03.395566 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m09:34:03.485147 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m09:34:04.035544 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m09:34:04.326260 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 5 files added, 0 files changed.
+[0m09:34:04.327108 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/core/dim_account.sql
+[0m09:34:04.327722 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/core/dim_date.sql
+[0m09:34:04.328441 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/_marts.yml
+[0m09:34:04.328898 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/core/dim_customer.sql
+[0m09:34:04.329342 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/core/dim_merchant.sql
+[0m09:34:05.076346 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:05.078429 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:05.120520 [info ] [Dummy-1   ]: Found 8 models, 35 data tests, 2 snapshots, 4 sources, 475 macros
+[0m09:34:05.123467 [info ] [Dummy-1   ]: 
+[0m09:34:05.124052 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m09:34:05.124477 [info ] [Dummy-1   ]: 
+[0m09:34:05.125160 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m09:34:05.127249 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m09:34:05.209442 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m09:34:05.209984 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m09:34:05.210415 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:05.667139 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.457 seconds
+[0m09:34:05.675574 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_MARTS)
+[0m09:34:05.677441 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_SNAPSHOTS'
+[0m09:34:05.679196 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_STAGING'
+[0m09:34:05.691805 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:05.695345 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:05.698832 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:05.699354 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:05.699889 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:05.700349 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:05.700799 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:05.701215 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:05.701638 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:06.130953 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.429 seconds
+[0m09:34:06.135506 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:06.136095 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m09:34:06.152013 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.451 seconds
+[0m09:34:06.153883 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:06.154358 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m09:34:06.169303 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.468 seconds
+[0m09:34:06.171442 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:06.171990 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m09:34:06.250704 [debug] [ThreadPool]: SQL status: SUCCESS 0 in 0.078 seconds
+[0m09:34:06.252686 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:06.253171 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:06.259439 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.105 seconds
+[0m09:34:06.261390 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:06.261834 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:06.263949 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.127 seconds
+[0m09:34:06.265777 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:06.266267 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:06.333144 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.079 seconds
+[0m09:34:06.348271 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.081 seconds
+[0m09:34:06.351749 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.089 seconds
+[0m09:34:06.364872 [debug] [Thread-2 (]: Began running node model.banking.dim_customer
+[0m09:34:06.365668 [info ] [Thread-2 (]: 1 of 1 START sql table model MARTS.dim_customer ................................ [RUN]
+[0m09:34:06.366370 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_MARTS, now model.banking.dim_customer)
+[0m09:34:06.366886 [debug] [Thread-2 (]: Began compiling node model.banking.dim_customer
+[0m09:34:06.377475 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.dim_customer"
+[0m09:34:06.378302 [debug] [Thread-2 (]: Began executing node model.banking.dim_customer
+[0m09:34:06.410555 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.dim_customer"
+[0m09:34:06.412375 [debug] [Thread-2 (]: Using snowflake connection "model.banking.dim_customer"
+[0m09:34:06.412965 [debug] [Thread-2 (]: On model.banking.dim_customer: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.dim_customer"} */
+create or replace transient table DB_BANKING.MARTS.dim_customer
+         as
+        (with versions as (
+
+    select
+        *,
+        row_number() over (partition by customer_id order by dbt_valid_from) as version_number
+    from DB_BANKING.SNAPSHOTS.snap_customers
+    
+)
+
+select
+
+    md5(cast(customer_id as varchar) || '|' || cast(dbt_valid_from as varchar)) as customer_key,
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    phone,
+    city,
+    country,
+    kyc_status,
+    created_at,
+    case
+        when version_number = 1 then to_timestamp_tz('1900-01-01 00:00:00')
+        else dbt_valid_from
+    end as valid_from,
+    dbt_valid_to as valid_to,
+    dbt_valid_to = to_timestamp_tz('9999-12-31 00:00:00') as is_current
+    
+from versions
+        );
+[0m09:34:06.413456 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:34:08.423406 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 2.010 seconds
+[0m09:34:08.447557 [info ] [Thread-2 (]: 1 of 1 OK created sql table model MARTS.dim_customer ........................... [[32mSUCCESS 1[0m in 2.08s]
+[0m09:34:08.448441 [debug] [Thread-2 (]: Finished running node model.banking.dim_customer
+[0m09:34:08.451557 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m09:34:08.452132 [debug] [Dummy-1   ]: Connection 'model.banking.dim_customer' was properly closed.
+[0m09:34:08.452550 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_SNAPSHOTS' was properly closed.
+[0m09:34:08.452950 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_STAGING' was properly closed.
+[0m09:34:08.453424 [info ] [Dummy-1   ]: 
+[0m09:34:08.453924 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 3.33 seconds (3.33s).
+[0m09:34:08.454737 [debug] [Dummy-1   ]: Command end result
+[0m09:34:08.572334 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:08.574428 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:08.580525 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m09:34:08.581019 [info ] [Dummy-1   ]: 
+[0m09:34:08.581643 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m09:34:08.582086 [info ] [Dummy-1   ]: 
+[0m09:34:08.582563 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m09:34:08.584320 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 5.4561496, "process_in_blocks": "0", "process_kernel_time": 0.86, "process_mem_max_rss": "510656", "process_out_blocks": "0", "process_user_time": 4.9}
+[0m09:34:08.584974 [debug] [Dummy-1   ]: Command `cli run` succeeded at 09:34:08.584707 after 5.46 seconds
+[0m09:34:08.585513 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 09:34:32.383196 | e6ae7ead-0c7a-4ea1-940c-e5f0b38d2dd8 ==============================
+[0m09:34:32.383196 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m09:34:32.384166 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_wjybmh7m', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt ', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'False'}
+[0m09:34:32.578060 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m09:34:32.668459 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m09:34:33.211480 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m09:34:33.512462 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:34:33.513014 [debug] [Dummy-1   ]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:34:33.682781 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:33.685022 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:33.732096 [info ] [Dummy-1   ]: Found 8 models, 35 data tests, 2 snapshots, 4 sources, 475 macros
+[0m09:34:33.735102 [info ] [Dummy-1   ]: 
+[0m09:34:33.735617 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m09:34:33.736160 [info ] [Dummy-1   ]: 
+[0m09:34:33.736909 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m09:34:33.739147 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m09:34:33.841171 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m09:34:33.841750 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m09:34:33.842239 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:34.302754 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.460 seconds
+[0m09:34:34.311221 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_SNAPSHOTS)
+[0m09:34:34.313183 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_MARTS'
+[0m09:34:34.314972 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_STAGING'
+[0m09:34:34.327927 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:34.331582 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:34.335181 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:34.335752 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:34.336240 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:34.336682 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:34.337147 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:34.337580 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:34.337978 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:34.778430 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.441 seconds
+[0m09:34:34.782990 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:34.783720 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.446 seconds
+[0m09:34:34.784470 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m09:34:34.786169 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:34.786981 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m09:34:34.818644 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.481 seconds
+[0m09:34:34.820608 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:34.821074 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m09:34:34.895154 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.108 seconds
+[0m09:34:34.896092 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.109 seconds
+[0m09:34:34.898096 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:34.900008 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:34.900569 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:34.901055 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:34.933273 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.112 seconds
+[0m09:34:34.935480 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:34.936026 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:34.968094 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.066 seconds
+[0m09:34:34.968813 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.067 seconds
+[0m09:34:35.017368 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.081 seconds
+[0m09:34:35.029771 [debug] [Thread-2 (]: Began running node model.banking.dim_account
+[0m09:34:35.030674 [info ] [Thread-2 (]: 1 of 1 START sql table model MARTS.dim_account ................................. [RUN]
+[0m09:34:35.031393 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_SNAPSHOTS, now model.banking.dim_account)
+[0m09:34:35.031966 [debug] [Thread-2 (]: Began compiling node model.banking.dim_account
+[0m09:34:35.042188 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.dim_account"
+[0m09:34:35.042925 [debug] [Thread-2 (]: Began executing node model.banking.dim_account
+[0m09:34:35.074906 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.dim_account"
+[0m09:34:35.076606 [debug] [Thread-2 (]: Using snowflake connection "model.banking.dim_account"
+[0m09:34:35.077172 [debug] [Thread-2 (]: On model.banking.dim_account: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.dim_account"} */
+create or replace transient table DB_BANKING.MARTS.dim_account
+         as
+        (with versions as (
+
+    select
+        *,
+        row_number() over (partition by account_id order by dbt_valid_from) as version_number
+    from DB_BANKING.SNAPSHOTS.snap_accounts
+
+)
+
+select
+
+    md5(cast(account_id as varchar) || '|' || cast(dbt_valid_from as varchar)) as account_key,
+    account_id,
+    customer_id,
+    account_type,
+    currency,
+    status,
+    opened_at,
+    case
+        when version_number = 1 then to_timestamp_tz('1900-01-01 00:00:00')
+        else dbt_valid_from
+    end as valid_from,
+    dbt_valid_to as valid_to,
+    dbt_valid_to = to_timestamp_tz('9999-12-31 00:00:00') as is_current
+
+from versions
+        );
+[0m09:34:35.077672 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:34:37.306795 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 2.229 seconds
+[0m09:34:37.329850 [info ] [Thread-2 (]: 1 of 1 OK created sql table model MARTS.dim_account ............................ [[32mSUCCESS 1[0m in 2.30s]
+[0m09:34:37.330648 [debug] [Thread-2 (]: Finished running node model.banking.dim_account
+[0m09:34:37.333848 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m09:34:37.334288 [debug] [Dummy-1   ]: Connection 'model.banking.dim_account' was properly closed.
+[0m09:34:37.334688 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_MARTS' was properly closed.
+[0m09:34:37.335067 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_STAGING' was properly closed.
+[0m09:34:37.335486 [info ] [Dummy-1   ]: 
+[0m09:34:37.336015 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 3.60 seconds (3.60s).
+[0m09:34:37.336765 [debug] [Dummy-1   ]: Command end result
+[0m09:34:37.366727 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:37.368634 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:37.374401 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m09:34:37.374863 [info ] [Dummy-1   ]: 
+[0m09:34:37.375444 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m09:34:37.375960 [info ] [Dummy-1   ]: 
+[0m09:34:37.376415 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m09:34:37.378055 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 5.070417, "process_in_blocks": "0", "process_kernel_time": 0.8, "process_mem_max_rss": "459596", "process_out_blocks": "0", "process_user_time": 4.3}
+[0m09:34:37.378690 [debug] [Dummy-1   ]: Command `cli run` succeeded at 09:34:37.378417 after 5.07 seconds
+[0m09:34:37.379217 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 09:34:55.132344 | df964ba8-7e84-4c55-ac29-f95444750cff ==============================
+[0m09:34:55.132344 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m09:34:55.133230 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_e5ikk3ne', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'invocation_command': 'dbt ', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'False'}
+[0m09:34:55.323194 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m09:34:55.412192 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m09:34:55.955029 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m09:34:56.254300 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:34:56.254895 [debug] [Dummy-1   ]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:34:56.423810 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:56.425878 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:56.472476 [info ] [Dummy-1   ]: Found 8 models, 35 data tests, 2 snapshots, 4 sources, 475 macros
+[0m09:34:56.475541 [info ] [Dummy-1   ]: 
+[0m09:34:56.476135 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m09:34:56.476599 [info ] [Dummy-1   ]: 
+[0m09:34:56.477407 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m09:34:56.479615 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m09:34:56.582297 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m09:34:56.582865 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m09:34:56.583339 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:57.120943 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.537 seconds
+[0m09:34:57.129271 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_SNAPSHOTS)
+[0m09:34:57.131158 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_MARTS'
+[0m09:34:57.132965 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_STAGING'
+[0m09:34:57.145615 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:57.149276 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:57.152769 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:57.153315 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:57.153836 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:57.154327 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:34:57.154834 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:57.155269 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:57.155782 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:34:57.642880 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.487 seconds
+[0m09:34:57.647543 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:57.648564 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.493 seconds
+[0m09:34:57.649105 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m09:34:57.650826 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:57.651751 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m09:34:57.665268 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.510 seconds
+[0m09:34:57.667067 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:57.667536 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m09:34:57.793863 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.142 seconds
+[0m09:34:57.794735 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.127 seconds
+[0m09:34:57.796811 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:34:57.798587 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:34:57.799098 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:57.799566 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:57.810321 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.158 seconds
+[0m09:34:57.812578 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:34:57.813081 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:34:57.881643 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.068 seconds
+[0m09:34:57.882363 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.082 seconds
+[0m09:34:57.886013 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.086 seconds
+[0m09:34:57.900705 [debug] [Thread-2 (]: Began running node model.banking.dim_merchant
+[0m09:34:57.901484 [info ] [Thread-2 (]: 1 of 1 START sql table model MARTS.dim_merchant ................................ [RUN]
+[0m09:34:57.902156 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_SNAPSHOTS, now model.banking.dim_merchant)
+[0m09:34:57.902682 [debug] [Thread-2 (]: Began compiling node model.banking.dim_merchant
+[0m09:34:57.912726 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.dim_merchant"
+[0m09:34:57.913435 [debug] [Thread-2 (]: Began executing node model.banking.dim_merchant
+[0m09:34:57.945453 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.dim_merchant"
+[0m09:34:57.946687 [debug] [Thread-2 (]: Using snowflake connection "model.banking.dim_merchant"
+[0m09:34:57.947213 [debug] [Thread-2 (]: On model.banking.dim_merchant: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.dim_merchant"} */
+create or replace transient table DB_BANKING.MARTS.dim_merchant
+         as
+        (select
+
+    md5(cast(merchant_id as varchar)) as merchant_key,
+    merchant_id,
+    merchant_name,
+    category,
+    city,
+    country
+
+from DB_BANKING.STAGING.stg_merchants
+        );
+[0m09:34:57.947746 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:34:59.452219 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.504 seconds
+[0m09:34:59.475152 [info ] [Thread-2 (]: 1 of 1 OK created sql table model MARTS.dim_merchant ........................... [[32mSUCCESS 1[0m in 1.57s]
+[0m09:34:59.476002 [debug] [Thread-2 (]: Finished running node model.banking.dim_merchant
+[0m09:34:59.479038 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m09:34:59.479536 [debug] [Dummy-1   ]: Connection 'model.banking.dim_merchant' was properly closed.
+[0m09:34:59.480017 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_MARTS' was properly closed.
+[0m09:34:59.480405 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_STAGING' was properly closed.
+[0m09:34:59.480831 [info ] [Dummy-1   ]: 
+[0m09:34:59.481323 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 3.00 seconds (3.00s).
+[0m09:34:59.482114 [debug] [Dummy-1   ]: Command end result
+[0m09:34:59.512173 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:34:59.514149 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:34:59.520141 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m09:34:59.520606 [info ] [Dummy-1   ]: 
+[0m09:34:59.521223 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m09:34:59.521687 [info ] [Dummy-1   ]: 
+[0m09:34:59.522168 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m09:34:59.523914 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.464907, "process_in_blocks": "0", "process_kernel_time": 0.75, "process_mem_max_rss": "457964", "process_out_blocks": "0", "process_user_time": 4.19}
+[0m09:34:59.524544 [debug] [Dummy-1   ]: Command `cli run` succeeded at 09:34:59.524282 after 4.47 seconds
+[0m09:34:59.525070 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 09:35:40.356898 | 76d245b8-3228-4099-877d-3e5e599ce5b6 ==============================
+[0m09:35:40.356898 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m09:35:40.357813 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/tmp/dbt_effective_profiles_b7mjqn6y', 'version_check': 'True', 'debug': 'False', 'log_path': '/tmp/dbt/logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt ', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'False'}
+[0m09:35:40.550614 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m09:35:40.641526 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m09:35:41.176442 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m09:35:41.504146 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m09:35:41.504779 [debug] [Dummy-1   ]: Partial parsing enabled, no changes found, skipping parsing
+[0m09:35:41.678688 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:35:41.680911 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:35:41.729848 [info ] [Dummy-1   ]: Found 8 models, 35 data tests, 2 snapshots, 4 sources, 475 macros
+[0m09:35:41.733142 [info ] [Dummy-1   ]: 
+[0m09:35:41.733752 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m09:35:41.734180 [info ] [Dummy-1   ]: 
+[0m09:35:41.734963 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m09:35:41.737475 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m09:35:41.838691 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m09:35:41.839262 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m09:35:41.839814 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:35:42.316928 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.477 seconds
+[0m09:35:42.325526 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_STAGING)
+[0m09:35:42.327437 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_SNAPSHOTS'
+[0m09:35:42.329398 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_MARTS'
+[0m09:35:42.342583 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:35:42.346574 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:35:42.350396 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:35:42.350992 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:35:42.351497 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:35:42.352058 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:35:42.352507 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:35:42.352920 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:35:42.353352 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:35:42.827239 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.474 seconds
+[0m09:35:42.831936 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:35:42.832486 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m09:35:42.843747 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.491 seconds
+[0m09:35:42.845648 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:35:42.846167 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m09:35:42.851152 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.499 seconds
+[0m09:35:42.853095 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:35:42.853580 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m09:35:42.967168 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.134 seconds
+[0m09:35:42.969406 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:35:42.969960 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:35:43.006477 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.152 seconds
+[0m09:35:43.007348 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.161 seconds
+[0m09:35:43.009457 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:35:43.011606 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:35:43.012244 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:35:43.012744 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:35:43.050655 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.080 seconds
+[0m09:35:43.085079 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.072 seconds
+[0m09:35:43.088665 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.075 seconds
+[0m09:35:43.102036 [debug] [Thread-2 (]: Began running node model.banking.dim_date
+[0m09:35:43.102904 [info ] [Thread-2 (]: 1 of 1 START sql table model MARTS.dim_date .................................... [RUN]
+[0m09:35:43.103623 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_STAGING, now model.banking.dim_date)
+[0m09:35:43.104215 [debug] [Thread-2 (]: Began compiling node model.banking.dim_date
+[0m09:35:43.113643 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.dim_date"
+[0m09:35:43.114426 [debug] [Thread-2 (]: Began executing node model.banking.dim_date
+[0m09:35:43.148374 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.dim_date"
+[0m09:35:43.150154 [debug] [Thread-2 (]: Using snowflake connection "model.banking.dim_date"
+[0m09:35:43.150749 [debug] [Thread-2 (]: On model.banking.dim_date: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.dim_date"} */
+create or replace transient table DB_BANKING.MARTS.dim_date
+         as
+        (with spine as (
+
+    select 
+        dateadd(day, row_number() over (order by seq4()) -1, to_date('2024-01-01')) as date_day
+    from table(generator(rowcount => 1827))
+
+) 
+
+select
+    to_number(to_char(date_day, 'YYYYMMDD')) as date_key,
+    date_day,
+    year(date_key) as calendar_year,
+    quarter(date_key) as calendar_quarter,
+    month(date_key) as calendar_month,
+    monthname(date_key) as month_name,
+    day(date_key) as day_of_month,
+    dayofweekiso(date_key) as day_of_week_iso,
+    dayname(date_key) as day_name,
+    weekofyear(date_key) as week_of_year,
+    dayofweekiso(date_key) in (6,7) as is_weekend
+
+from spine
+        );
+[0m09:35:43.151275 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:35:43.693400 [debug] [Thread-2 (]: Snowflake adapter: Snowflake query id: 01c7e1c3-020c-6544-0032-c04b012da2c2
+[0m09:35:43.694018 [debug] [Thread-2 (]: Snowflake adapter: Snowflake error: 002016 (22000): SQL compilation error:
+Function EXTRACT does not support NUMBER(38,0) argument type
+[0m09:35:43.697978 [debug] [Thread-2 (]: Database Error in model dim_date (models/marts/core/dim_date.sql)
+  002016 (22000): SQL compilation error:
+  Function EXTRACT does not support NUMBER(38,0) argument type
+  compiled code at target/run/banking/models/marts/core/dim_date.sql
+[0m09:35:43.700657 [error] [Thread-2 (]: 1 of 1 ERROR creating sql table model MARTS.dim_date ........................... [[31mERROR[0m in 0.60s]
+[0m09:35:43.701386 [debug] [Thread-2 (]: Finished running node model.banking.dim_date
+[0m09:35:43.702115 [debug] [Thread-8 (]: Marking all children of 'model.banking.dim_date' to be skipped because of status 'error'.  Reason: Database Error in model dim_date (models/marts/core/dim_date.sql)
+  002016 (22000): SQL compilation error:
+  Function EXTRACT does not support NUMBER(38,0) argument type
+  compiled code at target/run/banking/models/marts/core/dim_date.sql.
+[0m09:35:43.705679 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m09:35:43.706168 [debug] [Dummy-1   ]: Connection 'model.banking.dim_date' was properly closed.
+[0m09:35:43.706572 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_SNAPSHOTS' was properly closed.
+[0m09:35:43.706943 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_MARTS' was properly closed.
+[0m09:35:43.707374 [info ] [Dummy-1   ]: 
+[0m09:35:43.707888 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 1.97 seconds (1.97s).
+[0m09:35:43.708687 [debug] [Dummy-1   ]: Command end result
+[0m09:35:43.739893 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:35:43.741887 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:35:43.748052 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m09:35:43.748531 [info ] [Dummy-1   ]: 
+[0m09:35:43.749116 [info ] [Dummy-1   ]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m09:35:43.749589 [info ] [Dummy-1   ]: 
+[0m09:35:43.750121 [error] [Dummy-1   ]:   Database Error in model dim_date (models/marts/core/dim_date.sql)
+  002016 (22000): SQL compilation error:
+  Function EXTRACT does not support NUMBER(38,0) argument type
+  compiled code at target/run/banking/models/marts/core/dim_date.sql
+[0m09:35:43.750530 [info ] [Dummy-1   ]: 
+[0m09:35:43.750971 [info ] [Dummy-1   ]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m09:35:43.752652 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 3.4716864, "process_in_blocks": "0", "process_kernel_time": 0.89, "process_mem_max_rss": "455888", "process_out_blocks": "0", "process_user_time": 4.27}
+[0m09:35:43.753261 [debug] [Dummy-1   ]: Command `cli run` failed at 09:35:43.753017 after 3.47 seconds
+[0m09:35:43.753769 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 09:41:52.811196 | 76d47a66-6e88-4e53-954b-36c67add4799 ==============================
+[0m09:41:52.811196 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m09:41:52.812126 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/tmp/dbt_effective_profiles_vxojsjug', 'log_path': '/tmp/dbt/logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt ', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'False'}
+[0m09:41:53.010830 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m09:41:53.103080 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m09:41:53.638371 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m09:41:53.943790 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m09:41:53.944850 [debug] [Dummy-1   ]: Partial parsing: updated file: banking://models/marts/core/dim_date.sql
+[0m09:41:54.656828 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:41:54.659091 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:41:54.704354 [info ] [Dummy-1   ]: Found 8 models, 35 data tests, 2 snapshots, 4 sources, 475 macros
+[0m09:41:54.707538 [info ] [Dummy-1   ]: 
+[0m09:41:54.708084 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m09:41:54.708507 [info ] [Dummy-1   ]: 
+[0m09:41:54.709208 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m09:41:54.711619 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m09:41:54.796198 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m09:41:54.796766 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m09:41:54.797269 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:41:55.351347 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.554 seconds
+[0m09:41:55.359710 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_SNAPSHOTS)
+[0m09:41:55.361551 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_MARTS'
+[0m09:41:55.363562 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_STAGING'
+[0m09:41:55.377238 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:41:55.381923 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:41:55.385673 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:41:55.386388 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:41:55.386915 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:41:55.387412 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m09:41:55.387888 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:41:55.388362 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:41:55.388774 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m09:41:55.873474 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.485 seconds
+[0m09:41:55.878201 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:41:55.878759 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m09:41:55.890230 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.501 seconds
+[0m09:41:55.892273 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:41:55.892890 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m09:41:55.908775 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.520 seconds
+[0m09:41:55.911378 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:41:55.911956 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m09:41:56.008912 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.130 seconds
+[0m09:41:56.011103 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m09:41:56.011635 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:41:56.027609 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.134 seconds
+[0m09:41:56.028421 [debug] [ThreadPool]: SQL status: SUCCESS 3 in 0.116 seconds
+[0m09:41:56.030443 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m09:41:56.032276 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m09:41:56.032769 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:41:56.033283 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m09:41:56.081504 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.069 seconds
+[0m09:41:56.100312 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.066 seconds
+[0m09:41:56.103403 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.070 seconds
+[0m09:41:56.117990 [debug] [Thread-2 (]: Began running node model.banking.dim_date
+[0m09:41:56.119021 [info ] [Thread-2 (]: 1 of 1 START sql table model MARTS.dim_date .................................... [RUN]
+[0m09:41:56.119741 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_SNAPSHOTS, now model.banking.dim_date)
+[0m09:41:56.120293 [debug] [Thread-2 (]: Began compiling node model.banking.dim_date
+[0m09:41:56.128609 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.dim_date"
+[0m09:41:56.129479 [debug] [Thread-2 (]: Began executing node model.banking.dim_date
+[0m09:41:56.164985 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.dim_date"
+[0m09:41:56.166841 [debug] [Thread-2 (]: Using snowflake connection "model.banking.dim_date"
+[0m09:41:56.167495 [debug] [Thread-2 (]: On model.banking.dim_date: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.dim_date"} */
+create or replace transient table DB_BANKING.MARTS.dim_date
+         as
+        (with spine as (
+
+    select 
+        dateadd(day, row_number() over (order by seq4()) -1, to_date('2024-01-01')) as date_day
+    from table(generator(rowcount => 1827))
+
+) 
+
+select
+    to_number(to_char(date_day, 'YYYYMMDD')) as date_key,
+    date_day,
+    year(date_day) as calendar_year,
+    quarter(date_day) as calendar_quarter,
+    month(date_day) as calendar_month,
+    monthname(date_day) as month_name,
+    day(date_day) as day_of_month,
+    dayofweekiso(date_day) as day_of_week_iso,
+    dayname(date_day) as day_name,
+    weekofyear(date_day) as week_of_year,
+    dayofweekiso(date_day) in (6,7) as is_weekend
+
+from spine
+        );
+[0m09:41:56.168056 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m09:41:57.501396 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.333 seconds
+[0m09:41:57.526027 [info ] [Thread-2 (]: 1 of 1 OK created sql table model MARTS.dim_date ............................... [[32mSUCCESS 1[0m in 1.40s]
+[0m09:41:57.526834 [debug] [Thread-2 (]: Finished running node model.banking.dim_date
+[0m09:41:57.530109 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m09:41:57.530619 [debug] [Dummy-1   ]: Connection 'model.banking.dim_date' was properly closed.
+[0m09:41:57.531063 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_MARTS' was properly closed.
+[0m09:41:57.531456 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_STAGING' was properly closed.
+[0m09:41:57.531892 [info ] [Dummy-1   ]: 
+[0m09:41:57.532364 [info ] [Dummy-1   ]: Finished running 1 table model in 0 hours 0 minutes and 2.82 seconds (2.82s).
+[0m09:41:57.533131 [debug] [Dummy-1   ]: Command end result
+[0m09:41:57.562765 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m09:41:57.564761 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m09:41:57.570608 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m09:41:57.571082 [info ] [Dummy-1   ]: 
+[0m09:41:57.571698 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m09:41:57.572158 [info ] [Dummy-1   ]: 
+[0m09:41:57.572608 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m09:41:57.575439 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.8429103, "process_in_blocks": "0", "process_kernel_time": 0.84, "process_mem_max_rss": "509112", "process_out_blocks": "0", "process_user_time": 4.88}
+[0m09:41:57.576031 [debug] [Dummy-1   ]: Command `cli run` succeeded at 09:41:57.575797 after 4.84 seconds
+[0m09:41:57.576511 [debug] [Dummy-1   ]: Flushing usage events
