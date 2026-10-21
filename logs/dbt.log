@@ -2304,3 +2304,179 @@ from spine
 [0m09:41:57.575439 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 4.8429103, "process_in_blocks": "0", "process_kernel_time": 0.84, "process_mem_max_rss": "509112", "process_out_blocks": "0", "process_user_time": 4.88}
 [0m09:41:57.576031 [debug] [Dummy-1   ]: Command `cli run` succeeded at 09:41:57.575797 after 4.84 seconds
 [0m09:41:57.576511 [debug] [Dummy-1   ]: Flushing usage events
+
+
+============================== 11:03:00.671287 | 12358f1f-cc0e-4d5f-bf34-53e06954fe6e ==============================
+[0m11:03:00.671287 [info ] [Dummy-1   ]: Running with dbt=1.9.4
+[0m11:03:00.672211 [debug] [Dummy-1   ]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/tmp/dbt/logs', 'profiles_dir': '/tmp/dbt_effective_profiles_864ognck', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'invocation_command': 'dbt ', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'False'}
+[0m11:03:00.860749 [info ] [Dummy-1   ]: State adapter: dbt-state v0.0.0 is disabled
+[0m11:03:00.949078 [info ] [Dummy-1   ]: Registered adapter: snowflake=1.9.2
+[0m11:03:01.479045 [debug] [Dummy-1   ]: checksum: 53ed91fada2233efb98368d1716b44ab532c83a9c293cf1890b7905d5b45fb25, vars: {}, profile: , target: dev, version: 1.9.4
+[0m11:03:01.806670 [debug] [Dummy-1   ]: Partial parsing enabled: 0 files deleted, 1 files added, 1 files changed.
+[0m11:03:01.807595 [debug] [Dummy-1   ]: Partial parsing: added file: banking://models/marts/core/fct_transactions.sql
+[0m11:03:01.808477 [debug] [Dummy-1   ]: Partial parsing: updated file: banking://models/marts/_marts.yml
+[0m11:03:02.576079 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m11:03:02.578136 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m11:03:02.621761 [info ] [Dummy-1   ]: Found 9 models, 46 data tests, 2 snapshots, 4 sources, 475 macros
+[0m11:03:02.625168 [info ] [Dummy-1   ]: 
+[0m11:03:02.625754 [info ] [Dummy-1   ]: Concurrency: 4 threads (target='dev')
+[0m11:03:02.626224 [info ] [Dummy-1   ]: 
+[0m11:03:02.626955 [debug] [Dummy-1   ]: Acquiring new snowflake connection 'master'
+[0m11:03:02.629145 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING'
+[0m11:03:02.711795 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING"
+[0m11:03:02.712449 [debug] [ThreadPool]: On list_DB_BANKING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING"} */
+show terse schemas in database DB_BANKING
+    limit 10000
+[0m11:03:02.712950 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m11:03:03.187668 [debug] [ThreadPool]: SQL status: SUCCESS 8 in 0.475 seconds
+[0m11:03:03.196077 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_DB_BANKING, now list_DB_BANKING_MARTS)
+[0m11:03:03.198169 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_STAGING'
+[0m11:03:03.199976 [debug] [ThreadPool]: Acquiring new snowflake connection 'list_DB_BANKING_SNAPSHOTS'
+[0m11:03:03.212763 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m11:03:03.216168 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m11:03:03.220332 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m11:03:03.220856 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m11:03:03.221333 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m11:03:03.221790 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session set quoted_identifiers_ignore_case = false;
+[0m11:03:03.222267 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m11:03:03.222689 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m11:03:03.223141 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m11:03:03.642235 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.419 seconds
+[0m11:03:03.646739 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m11:03:03.647286 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+show objects in DB_BANKING.SNAPSHOTS
+    limit 10000
+    
+;
+[0m11:03:03.659323 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.437 seconds
+[0m11:03:03.661176 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m11:03:03.661648 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+show objects in DB_BANKING.STAGING
+    limit 10000
+    
+;
+[0m11:03:03.664170 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.442 seconds
+[0m11:03:03.665749 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m11:03:03.666212 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+show objects in DB_BANKING.MARTS
+    limit 10000
+    
+;
+[0m11:03:03.760355 [debug] [ThreadPool]: SQL status: SUCCESS 2 in 0.112 seconds
+[0m11:03:03.762402 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_SNAPSHOTS"
+[0m11:03:03.762902 [debug] [ThreadPool]: On list_DB_BANKING_SNAPSHOTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_SNAPSHOTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m11:03:03.783926 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.117 seconds
+[0m11:03:03.784759 [debug] [ThreadPool]: SQL status: SUCCESS 4 in 0.123 seconds
+[0m11:03:03.786752 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_MARTS"
+[0m11:03:03.788579 [debug] [ThreadPool]: Using snowflake connection "list_DB_BANKING_STAGING"
+[0m11:03:03.789076 [debug] [ThreadPool]: On list_DB_BANKING_MARTS: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_MARTS"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m11:03:03.789561 [debug] [ThreadPool]: On list_DB_BANKING_STAGING: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "connection_name": "list_DB_BANKING_STAGING"} */
+alter session unset quoted_identifiers_ignore_case;
+[0m11:03:03.844502 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.081 seconds
+[0m11:03:03.851515 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.061 seconds
+[0m11:03:03.852227 [debug] [ThreadPool]: SQL status: SUCCESS 1 in 0.062 seconds
+[0m11:03:03.868181 [debug] [Thread-2 (]: Began running node model.banking.fct_transactions
+[0m11:03:03.868938 [info ] [Thread-2 (]: 1 of 1 START sql incremental model MARTS.fct_transactions ...................... [RUN]
+[0m11:03:03.869618 [debug] [Thread-2 (]: Re-using an available connection from the pool (formerly list_DB_BANKING_MARTS, now model.banking.fct_transactions)
+[0m11:03:03.870175 [debug] [Thread-2 (]: Began compiling node model.banking.fct_transactions
+[0m11:03:03.880906 [debug] [Thread-2 (]: Writing injected SQL for node "model.banking.fct_transactions"
+[0m11:03:03.881643 [debug] [Thread-2 (]: Began executing node model.banking.fct_transactions
+[0m11:03:03.943830 [debug] [Thread-2 (]: Writing runtime sql for node "model.banking.fct_transactions"
+[0m11:03:03.946056 [debug] [Thread-2 (]: Using snowflake connection "model.banking.fct_transactions"
+[0m11:03:03.946672 [debug] [Thread-2 (]: On model.banking.fct_transactions: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.fct_transactions"} */
+create or replace transient table DB_BANKING.MARTS.fct_transactions
+         as
+        (
+
+-- Incremental on the Fivetran watermark. ">=" re-reads the latest batch on
+-- every run, which is safe because the merge on transaction_id is idempotent.
+-- Soft-deleted rows stay in the table with is_deleted = true.
+
+with txn as (
+
+    select * from DB_BANKING.STAGING.stg_transactions
+     
+    
+),
+
+acct as (
+
+    select account_key, account_id, customer_id, valid_from, valid_to
+    from DB_BANKING.MARTS.dim_account
+    
+),
+
+cust as (
+
+    select customer_key, customer_id, valid_from, valid_to
+    from DB_BANKING.MARTS.dim_customer
+
+),
+
+merch as (
+
+    select merchant_key, merchant_id
+    from DB_BANKING.MARTS.dim_merchant
+
+)
+
+select 
+    t.transaction_id,
+    a.account_key,
+    c.customer_key,
+    m.merchant_key,
+    to_number(to_char(cast(t.transaction_ts as date), 'YYYYMMDD')) as date_key,
+    t.transaction_type,
+    t.status,
+    t.amount,
+    t.currency,
+    t.status = 'COMPLETED' as is_completed,
+    t.status = 'FAILED' as is_failed,
+    t.transaction_ts,
+    t.created_at,
+    t.updated_at,
+    t.fivetran_synced_at,
+    t.is_deleted
+from txn t 
+left join acct a 
+    on a.account_id = t.account_id
+    and t.transaction_ts >= a.valid_from
+    and t.transaction_ts < a.valid_to
+left join cust c
+    on c.customer_id = a.customer_id
+    and t.transaction_ts >= c.valid_from
+    and t.transaction_ts < c.valid_to
+left join merch m
+    on m.merchant_id = t.merchant_id
+        );
+[0m11:03:03.947210 [debug] [Thread-2 (]: Opening a new connection, currently in state init
+[0m11:03:05.942966 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 1.996 seconds
+[0m11:03:06.028507 [debug] [Thread-2 (]: Applying DROP to: DB_BANKING.MARTS.fct_transactions__dbt_tmp
+[0m11:03:06.044064 [debug] [Thread-2 (]: Using snowflake connection "model.banking.fct_transactions"
+[0m11:03:06.044691 [debug] [Thread-2 (]: On model.banking.fct_transactions: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "banking", "target_name": "dev", "node_id": "model.banking.fct_transactions"} */
+drop view if exists DB_BANKING.MARTS.fct_transactions__dbt_tmp cascade
+[0m11:03:06.100639 [debug] [Thread-2 (]: SQL status: SUCCESS 1 in 0.055 seconds
+[0m11:03:06.122671 [info ] [Thread-2 (]: 1 of 1 OK created sql incremental model MARTS.fct_transactions ................. [[32mSUCCESS 1[0m in 2.25s]
+[0m11:03:06.123469 [debug] [Thread-2 (]: Finished running node model.banking.fct_transactions
+[0m11:03:06.126836 [debug] [Dummy-1   ]: Connection 'master' was properly closed.
+[0m11:03:06.127596 [debug] [Dummy-1   ]: Connection 'model.banking.fct_transactions' was properly closed.
+[0m11:03:06.128125 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_STAGING' was properly closed.
+[0m11:03:06.128541 [debug] [Dummy-1   ]: Connection 'list_DB_BANKING_SNAPSHOTS' was properly closed.
+[0m11:03:06.129015 [info ] [Dummy-1   ]: 
+[0m11:03:06.129486 [info ] [Dummy-1   ]: Finished running 1 incremental model in 0 hours 0 minutes and 3.50 seconds (3.50s).
+[0m11:03:06.130242 [debug] [Dummy-1   ]: Command end result
+[0m11:03:06.161957 [debug] [Dummy-1   ]: Wrote artifact WritableManifest to /tmp/dbt/target/manifest.json
+[0m11:03:06.163939 [debug] [Dummy-1   ]: Wrote artifact SemanticManifest to /tmp/dbt/target/semantic_manifest.json
+[0m11:03:06.169599 [debug] [Dummy-1   ]: Wrote artifact RunExecutionResult to /tmp/dbt/target/run_results.json
+[0m11:03:06.170065 [info ] [Dummy-1   ]: 
+[0m11:03:06.170721 [info ] [Dummy-1   ]: [32mCompleted successfully[0m
+[0m11:03:06.171187 [info ] [Dummy-1   ]: 
+[0m11:03:06.171668 [info ] [Dummy-1   ]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m11:03:06.173431 [debug] [Dummy-1   ]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 5.5754867, "process_in_blocks": "0", "process_kernel_time": 0.91, "process_mem_max_rss": "463992", "process_out_blocks": "0", "process_user_time": 4.79}
+[0m11:03:06.174069 [debug] [Dummy-1   ]: Command `cli run` succeeded at 11:03:06.173808 after 5.58 seconds
+[0m11:03:06.174598 [debug] [Dummy-1   ]: Flushing usage events
