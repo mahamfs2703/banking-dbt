@@ -1,30 +1,26 @@
 
-      
-  
-    
+      begin;
+    merge into "DB_BANKING"."SNAPSHOTS"."SNAP_CUSTOMERS" as DBT_INTERNAL_DEST
+    using "DB_BANKING"."SNAPSHOTS"."SNAP_CUSTOMERS__dbt_tmp" as DBT_INTERNAL_SOURCE
+    on DBT_INTERNAL_SOURCE.dbt_scd_id = DBT_INTERNAL_DEST.dbt_scd_id
 
-        create or replace transient table DB_BANKING.SNAPSHOTS.snap_customers
-         as
-        (
-    
+    when matched
+     
+	
+	
+	and ((DBT_INTERNAL_DEST.dbt_valid_to = to_timestamp_tz('9999-12-31 00:00:00'))
+ or DBT_INTERNAL_DEST.dbt_valid_to is null)
 
-    select *,
-        md5(coalesce(cast(customer_id as varchar ), '')
-         || '|' || coalesce(cast(updated_at as varchar ), '')
-        ) as dbt_scd_id,
-        updated_at as dbt_updated_at,
-        updated_at as dbt_valid_from,
-        
-  
-  coalesce(nullif(updated_at, updated_at), to_timestamp_tz('9999-12-31 00:00:00'))
-  as dbt_valid_to
-from (
-        select * from DB_BANKING.STAGING.stg_customers
-    ) sbq
+     
+     and DBT_INTERNAL_SOURCE.dbt_change_type in ('update', 'delete')
+        then update
+        set dbt_valid_to = DBT_INTERNAL_SOURCE.dbt_valid_to
 
+    when not matched
+     and DBT_INTERNAL_SOURCE.dbt_change_type = 'insert'
+        then insert ("CUSTOMER_ID", "FIRST_NAME", "LAST_NAME", "EMAIL", "PHONE", "CITY", "COUNTRY", "KYC_STATUS", "CREATED_AT", "UPDATED_AT", "FIVETRAN_SYNCED_AT", "DBT_UPDATED_AT", "DBT_VALID_FROM", "DBT_VALID_TO", "DBT_SCD_ID")
+        values ("CUSTOMER_ID", "FIRST_NAME", "LAST_NAME", "EMAIL", "PHONE", "CITY", "COUNTRY", "KYC_STATUS", "CREATED_AT", "UPDATED_AT", "FIVETRAN_SYNCED_AT", "DBT_UPDATED_AT", "DBT_VALID_FROM", "DBT_VALID_TO", "DBT_SCD_ID")
 
-
-        );
-      
-  
+;
+    commit;
   

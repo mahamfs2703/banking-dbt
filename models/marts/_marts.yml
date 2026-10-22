@@ -95,3 +95,27 @@ models:
         data_tests:
           - accepted_values:
               values: ['PENDING', 'COMPLETED', 'FAILED', 'REVERSED']  
+
+  - name: agg_daily_kpis
+    description: One row per day for the dashboard KPI tiles. Excludes deleted transactions.
+    columns:
+      - name: txn_date
+        data_tests: [unique, not_null]
+
+  - name: agg_txn_volume_per_minute
+    description: Transactions and value per minute. Exclues deleted transactions.
+    columns:
+      - name: minute_ts
+        data_tests: [unique, not_null]
+        
+  - name: agg_failed_rate_hourly
+    description: Failed-transaction rate per hour. Excludes deleted transactions.
+    columns:
+      - name: hour_ts
+        data_tests: [unique, not_null]
+
+  - name: agg_top_merchants
+    description: Merchants ranked by completed transaction value. Excludes deleted transactions.
+    columns:
+      - name: merchant_id
+        data_tests: [unique, not_null]
