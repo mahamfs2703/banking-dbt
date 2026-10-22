@@ -17,9 +17,14 @@ with txn as (
 
     select * from {{ ref('stg_transactions') }}
     {% if is_incremental() %}
-        where fivetran_synced_at >= 
-            (select coalesce(max(fivetran_synced_at), to_timestamp_tz('1990-01-01 00:00:00')) from {{ this }})
-    {% endif %} 
+        where fivetran_synced_at >= (
+            select coalesce(max(fivetran_synced_at), to_timestamp_tz('1990-01-01 00:00:00')) from {{ this }}
+        )
+        or transaction_id in (
+            select transaction_id from {{ this }}
+            where account_key is null or customer_key is null
+        )  
+    {% endif %}
     
 ),
 
