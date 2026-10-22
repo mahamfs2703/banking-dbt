@@ -1,71 +1,30 @@
-
+-- back compat for old kwarg name
   
+  begin;
+    
+        
+            
+	    
+	    
+            
+        
     
 
-        create or replace transient table DB_BANKING.MARTS.fct_transactions
-         as
-        (
-
--- Incremental on the Fivetran watermark. ">=" re-reads the latest batch on
--- every run, which is safe because the merge on transaction_id is idempotent.
--- Soft-deleted rows stay in the table with is_deleted = true.
-
-with txn as (
-
-    select * from DB_BANKING.STAGING.stg_transactions
-     
     
-),
 
-acct as (
+    merge into DB_BANKING.MARTS.fct_transactions as DBT_INTERNAL_DEST
+        using DB_BANKING.MARTS.fct_transactions__dbt_tmp as DBT_INTERNAL_SOURCE
+        on ((DBT_INTERNAL_SOURCE.transaction_id = DBT_INTERNAL_DEST.transaction_id))
 
-    select account_key, account_id, customer_id, valid_from, valid_to
-    from DB_BANKING.MARTS.dim_account
     
-),
+    when matched then update set
+        "TRANSACTION_ID" = DBT_INTERNAL_SOURCE."TRANSACTION_ID","ACCOUNT_KEY" = DBT_INTERNAL_SOURCE."ACCOUNT_KEY","CUSTOMER_KEY" = DBT_INTERNAL_SOURCE."CUSTOMER_KEY","MERCHANT_KEY" = DBT_INTERNAL_SOURCE."MERCHANT_KEY","DATE_KEY" = DBT_INTERNAL_SOURCE."DATE_KEY","TRANSACTION_TYPE" = DBT_INTERNAL_SOURCE."TRANSACTION_TYPE","STATUS" = DBT_INTERNAL_SOURCE."STATUS","AMOUNT" = DBT_INTERNAL_SOURCE."AMOUNT","CURRENCY" = DBT_INTERNAL_SOURCE."CURRENCY","IS_COMPLETED" = DBT_INTERNAL_SOURCE."IS_COMPLETED","IS_FAILED" = DBT_INTERNAL_SOURCE."IS_FAILED","TRANSACTION_TS" = DBT_INTERNAL_SOURCE."TRANSACTION_TS","CREATED_AT" = DBT_INTERNAL_SOURCE."CREATED_AT","UPDATED_AT" = DBT_INTERNAL_SOURCE."UPDATED_AT","FIVETRAN_SYNCED_AT" = DBT_INTERNAL_SOURCE."FIVETRAN_SYNCED_AT","IS_DELETED" = DBT_INTERNAL_SOURCE."IS_DELETED"
+    
 
-cust as (
+    when not matched then insert
+        ("TRANSACTION_ID", "ACCOUNT_KEY", "CUSTOMER_KEY", "MERCHANT_KEY", "DATE_KEY", "TRANSACTION_TYPE", "STATUS", "AMOUNT", "CURRENCY", "IS_COMPLETED", "IS_FAILED", "TRANSACTION_TS", "CREATED_AT", "UPDATED_AT", "FIVETRAN_SYNCED_AT", "IS_DELETED")
+    values
+        ("TRANSACTION_ID", "ACCOUNT_KEY", "CUSTOMER_KEY", "MERCHANT_KEY", "DATE_KEY", "TRANSACTION_TYPE", "STATUS", "AMOUNT", "CURRENCY", "IS_COMPLETED", "IS_FAILED", "TRANSACTION_TS", "CREATED_AT", "UPDATED_AT", "FIVETRAN_SYNCED_AT", "IS_DELETED")
 
-    select customer_key, customer_id, valid_from, valid_to
-    from DB_BANKING.MARTS.dim_customer
-
-),
-
-merch as (
-
-    select merchant_key, merchant_id
-    from DB_BANKING.MARTS.dim_merchant
-
-)
-
-select 
-    t.transaction_id,
-    a.account_key,
-    c.customer_key,
-    m.merchant_key,
-    to_number(to_char(cast(t.transaction_ts as date), 'YYYYMMDD')) as date_key,
-    t.transaction_type,
-    t.status,
-    t.amount,
-    t.currency,
-    t.status = 'COMPLETED' as is_completed,
-    t.status = 'FAILED' as is_failed,
-    t.transaction_ts,
-    t.created_at,
-    t.updated_at,
-    t.fivetran_synced_at,
-    t.is_deleted
-from txn t 
-left join acct a 
-    on a.account_id = t.account_id
-    and t.transaction_ts >= a.valid_from
-    and t.transaction_ts < a.valid_to
-left join cust c
-    on c.customer_id = a.customer_id
-    and t.transaction_ts >= c.valid_from
-    and t.transaction_ts < c.valid_to
-left join merch m
-    on m.merchant_id = t.merchant_id
-        );
-      
-  
+;
+    commit;

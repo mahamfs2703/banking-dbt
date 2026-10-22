@@ -7,7 +7,15 @@
 with txn as (
 
     select * from DB_BANKING.STAGING.stg_transactions
-     
+    
+        where fivetran_synced_at >= (
+            select coalesce(max(fivetran_synced_at), to_timestamp_tz('1990-01-01 00:00:00')) from DB_BANKING.MARTS.fct_transactions
+        )
+        or transaction_id in (
+            select transaction_id from DB_BANKING.MARTS.fct_transactions
+            where account_key is null or customer_key is null
+        )  
+    
     
 ),
 
