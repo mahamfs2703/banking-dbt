@@ -1,0 +1,121 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: SCD Type 2 customer dimension (one row per customer version),
+    columns:
+      - name: customer_key
+        data_tests: [unique, not_null]
+      - name: customer_id
+        data_tests: [not_null]
+      - name: kyc_status
+        data_tests: 
+          - accepted_values:
+              values: ['PENDING', 'VERIFIED', 'REJECTED']
+
+  - name: dim_account
+    description: SCD Type 2 account dimension (one row per account version). Balance is intentionally excluded.
+    columns:
+      - name: account_key
+        data_tests: [unique, not_null]
+      - name: account_id
+        data_tests: [not_null]
+      - name: account_type
+        data_tests:
+          - accepted_values:
+              values: ['SAVINGS', 'CHECKING', 'CREDIT']
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['ACTIVE', 'FROZEN', 'CLOSED']
+
+  - name: dim_merchant
+    description: Merchant dimension, current state only.
+    columns:
+      - name: merchant_key
+        data_tests: [unique, not_null]
+      - name: merchant_id
+        data_tests: [unique, not_null]
+
+  - name: dim_date
+    description: Calendar dimension from 2024-01-01 to 2028-12-31.
+    columns:
+      - name: date_key
+        data_tests: [unique, not_null]
+      - name: date_day
+        data_tests: [unique, not_null]
+
+  - name: fct_transactions
+    description: >
+      One row per transaction, loaded incrementally by merge on transaction_id.
+      Soft-deleted source rows are kept with is_deleted = true.
+      Dimension keys are point-in-time as of transaction_ts.
+    columns:
+      - name: transaction_id
+        data_tests: [unique, not_null]
+      - name: account_key
+        description: >
+          Point-in-time account version. Can be null briefly if a snapshot has not caught up.
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+          - relationships:
+              to: ref('dim_account')
+              field: account_key
+              config:
+                severity: warn
+      - name: customer_key
+        data_tests:
+          - not_null:
+              config:
+                severity: warn
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_key
+              config:
+                severity: warn
+      - name: merchant_key
+        description: Null for transactions without a merchant.
+        data_tests:
+          - relationships:
+              to: ref('dim_merchant')
+              field: merchant_key
+      - name: date_key
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+      - name: transaction_type
+        data_tests:
+          - accepted_values:
+              values: ['PURCHASE', 'DEPOSIT', 'WITHDRAWAL', 'TRANSFER']
+      - name: status
+        data_tests:
+          - accepted_values:
+              values: ['PENDING', 'COMPLETED', 'FAILED', 'REVERSED']  
+
+  - name: agg_daily_kpis
+    description: One row per day for the dashboard KPI tiles. Excludes deleted transactions.
+    columns:
+      - name: txn_date
+        data_tests: [unique, not_null]
+
+  - name: agg_txn_volume_per_minute
+    description: Transactions and value per minute. Exclues deleted transactions.
+    columns:
+      - name: minute_ts
+        data_tests: [unique, not_null]
+        
+  - name: agg_failed_rate_hourly
+    description: Failed-transaction rate per hour. Excludes deleted transactions.
+    columns:
+      - name: hour_ts
+        data_tests: [unique, not_null]
+
+  - name: agg_top_merchants
+    description: Merchants ranked by completed transaction value. Excludes deleted transactions.
+    columns:
+      - name: merchant_id
+        data_tests: [unique, not_null]

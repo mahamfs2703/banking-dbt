@@ -1,0 +1,26 @@
+snapshots:
+
+  # Customers: every update is a meaningful change, so version on updated_at.
+  - name: snap_customers
+    relation: ref('stg_customers')
+    config:
+      database: DB_BANKING
+      schema: SNAPSHOTS
+      unique_key: customer_id
+      strategy: timestamp
+      updated_at: updated_at
+      hard_deletes: invalidate
+      dbt_valid_to_current: "to_timestamp_tz('9999-12-31 00:00:00')"
+
+  # Accounts: balance changes on almost every transaction, so version only
+  # when the descriptive attributes change (check strategy on selected columns).
+  - name: snap_accounts
+    relation: ref('stg_accounts')
+    config:
+      database: DB_BANKING
+      schema: SNAPSHOTS
+      unique_key: account_id
+      strategy: check
+      check_cols: [customer_id, account_type, currency, status]
+      hard-deletes: invalidate
+      dbt_valid_to_current: "to_timestamp_tz('9999-12-31 00:00:00')"

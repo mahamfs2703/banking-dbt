@@ -1,0 +1,10 @@
+banking:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      database: DB_BANKING
+      schema: MARTS
+      role: DBT_ROLE
+      warehouse: DBT_PRACTICE_WH
+      threads: 4
